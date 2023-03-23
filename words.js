@@ -44,6 +44,7 @@ const renderCanvas = () => {
             wireframes: false
         }
     });
+    
     const floor = Bodies.rectangle(
         canvasSize.width / 2,
         canvasSize.height,
@@ -78,7 +79,7 @@ const renderCanvas = () => {
         const height = elemRef.offsetHeight;
 
         return {
-            body: Matter.Bodies.rectangle(canvasSize.width / 2, -50, width, height, {
+            body: Matter.Bodies.rectangle(canvasSize.width / 2, 0, width, height, {
                 render: {
                     fillStyle: "transparent"
                 }
@@ -86,12 +87,13 @@ const renderCanvas = () => {
             elem: elemRef,
             render() {
                 const { x, y } = this.body.position;
-                this.elem.style.top = `${y + 100}px`;
+                this.elem.style.top = `${y + height / 2 - 10}px`;
                 this.elem.style.left = `${x - width / 2}px`;
                 this.elem.style.transform = `rotate(${this.body.angle}rad)`;
             }
         };
     });
+    
 
     const mouse = Matter.Mouse.create(document.body);
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
