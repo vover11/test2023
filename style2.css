@@ -20,7 +20,7 @@
 }
 
 .main {
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -43,10 +43,12 @@
 
 }
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 946px) {
     .topnav {
         justify-content: space-between;
+        min-height: 60px;
         height: auto;
+        flex-direction: column;
     }
 
 
@@ -60,31 +62,71 @@
 
 .menu__items {
     display: flex;
-    flex-wrap: wrap;
+    
+}
+
+@media screen and (max-width: 946px) {
+    .menu__items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        /* margin-top: 20px;
+        margin-bottom: 20px; */
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
 }
 
 .menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 946px) {
+    .menu  {
+        display: none;
+    }
+}
+
+.menu__text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+
+}
+
+.menu__items__menu__menuimage{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 946px) {
+    .menu__items__menu__menuimage  {
+        width: 70%;
+    }
+}
+
+
+.toggle {
+    height: 70px;
+    position: absolute;
+    right: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@media screen and (max-width: 870px) {
-    .menu  {
-        display: none;
-    }
-
-
-}
-
-.menu__text {
-    position: absolute;
-}
-
-
-
 .topnav a {
-    font-family: 'Sissi display';
+    font-family: Sissi Display;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -103,7 +145,8 @@
 }
 
 .active {
-    background-color: #4CAF50;
+    /* background-color: #4CAF50; */
+    font-size: 35px !important;
     color: white;
 }
 
@@ -111,7 +154,7 @@
     display: none;
 }
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 946px) {
     .topnav a:not(:first-child) {
         display: none;
     }
@@ -122,15 +165,15 @@
     }
 }
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 946px) {
     .topnav.responsive {
         position: relative;
     }
 
     .topnav.responsive .icon {
         position: absolute;
-        right: 0;
-        top: 0;
+        /* right: 10px; */
+        /* top: 0; */
     }
 
     .topnav.responsive a {
@@ -139,10 +182,14 @@
         text-align: left;
     }
 
+    .topnav.responsive .menu__items {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
     .topnav.responsive .menu__items .menu {
         float: none;
         display: block;
-        text-align: left;
         display: flex;
     }
 }
