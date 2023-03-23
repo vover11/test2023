@@ -78,7 +78,7 @@ const renderCanvas = () => {
         const height = elemRef.offsetHeight;
 
         return {
-            body: Matter.Bodies.rectangle(canvasSize.width / 2, 0, width, height, {
+            body: Matter.Bodies.rectangle(canvasSize.width / 2, -50, width, height, {
                 render: {
                     fillStyle: "transparent"
                 }
@@ -86,7 +86,7 @@ const renderCanvas = () => {
             elem: elemRef,
             render() {
                 const { x, y } = this.body.position;
-                this.elem.style.top = `${y - 20}px`;
+                this.elem.style.top = `${y + 100}px`;
                 this.elem.style.left = `${x - width / 2}px`;
                 this.elem.style.transform = `rotate(${this.body.angle}rad)`;
             }
