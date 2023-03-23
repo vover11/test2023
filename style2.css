@@ -1,22 +1,16 @@
 @font-face {
-    font-family: Slack-light;
-    src: url(fonts/Slack-Light.ttf);
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Sissi-display;
+    font-family: Sissi Display;
     src: url(fonts/SissiDisplay-Trial.otf);
-    font-weight: bold;
-    font-style: normal;
 }
 
 @font-face {
-    font-family: Rabbit-hole-display;
-    src: url('fonts/RabbitHole-DisplayTRIAL-VERSION-1.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    font-family: Catalogue;
+    src: url(fonts/Catalogue-Medium.otf);
+}
+
+@font-face {
+    font-family: Rabbit Hole Display;
+    src: url(fonts/RabbitHole-DisplayTRIAL-VERSION-1.ttf);
 }
 
 * {
