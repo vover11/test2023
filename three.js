@@ -1,6 +1,7 @@
 import * as THREE from "https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js";
 import { OrbitControls } from "https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js";
 import { GUI } from "https://threejsfundamentals.org/threejs/../3rdparty/dat.gui.module.js";
+import { GLTFLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/loaders/GLTFLoader.js";
 
 
 var container3d = document.querySelector('.container3d');
@@ -12,6 +13,7 @@ var scene = new THREE.Scene();
 
 var camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
 camera.position.z = 200;
+
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.domElement.id = "canvasfirst";
@@ -31,7 +33,7 @@ function main() {
     const near = 0.1;
     const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 10, 20);
+    camera.position.set(0, 5, 5);
 
 
     const controls = new OrbitControls(camera, canvas);
@@ -63,28 +65,37 @@ function main() {
         mesh.rotation.x = Math.PI * -0.5;
         scene.add(mesh);
     }
-    {
-        const cubeSize = 4;
-        const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-        const cubeMat = new THREE.MeshPhongMaterial({ color: "#8AC" });
-        const mesh = new THREE.Mesh(cubeGeo, cubeMat);
-        mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
-        scene.add(mesh);
-    }
-    {
-        const sphereRadius = 3;
-        const sphereWidthDivisions = 32;
-        const sphereHeightDivisions = 16;
-        const sphereGeo = new THREE.SphereGeometry(
-            sphereRadius,
-            sphereWidthDivisions,
-            sphereHeightDivisions
-        );
-        const sphereMat = new THREE.MeshPhongMaterial({ color: "#CA8" });
-        const mesh = new THREE.Mesh(sphereGeo, sphereMat);
-        mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
-        scene.add(mesh);
-    }
+    // {
+    //     const cubeSize = 4;
+    //     const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+    //     const cubeMat = new THREE.MeshPhongMaterial({ color: "#8AC" });
+    //     const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+    //     mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
+    //     scene.add(mesh);
+    // }
+    // {
+    //     const sphereRadius = 3;
+    //     const sphereWidthDivisions = 32;
+    //     const sphereHeightDivisions = 16;
+    //     const sphereGeo = new THREE.SphereGeometry(
+    //         sphereRadius,
+    //         sphereWidthDivisions,
+    //         sphereHeightDivisions
+    //     );
+    //     const sphereMat = new THREE.MeshPhongMaterial({ color: "#CA8" });
+    //     const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+    //     mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
+    //     scene.add(mesh);
+    // }
+
+    const loader = new GLTFLoader();
+    loader.load('https://raw.githubusercontent.com/vover11/3dmodel/main/scene.gltf', function (gltf) {
+        const model = gltf.scene;
+        model.position.y = 5; // поднимаем модель на 5 единиц по оси Y
+        scene.add(model);
+    });
+
+
 
     {
         const color = 0xffffff;
@@ -107,7 +118,7 @@ function main() {
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
     }
-    
+
     window.addEventListener("resize", onContainerResize);
     onContainerResize();
 
@@ -122,7 +133,7 @@ function main() {
             camera.updateProjectionMatrix();
         }
         return needResize;
-        
+
     }
 
     function render() {

@@ -206,6 +206,17 @@
 
 }
 
+.item1{
+    order: 2;
+
+}
+
+.item2{
+    order: 1;
+}
+
+
+
 @media screen and (max-width: 946px) {
     .container {
         flex-direction: column;
