@@ -15,7 +15,7 @@ const splitWords = () => {
 };
 
 const renderCanvas = () => {
-    
+
     const Engine = Matter.Engine;
     const Render = Matter.Render;
     const World = Matter.World;
@@ -44,7 +44,7 @@ const renderCanvas = () => {
             wireframes: false
         }
     });
-    
+
     const floor = Bodies.rectangle(
         canvasSize.width / 2,
         canvasSize.height,
@@ -93,9 +93,15 @@ const renderCanvas = () => {
             }
         };
     });
-    
 
-    const mouse = Matter.Mouse.create(document.body);
+
+    const mouse = Matter.Mouse.create(document.body, {
+        // Добавьте следующий объект параметров:
+        eventOptions: {
+            // Сделайте `passive` равным `false`
+            passive: true
+        }
+    });
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
         mouse,
         constraint: {
@@ -105,8 +111,8 @@ const renderCanvas = () => {
             }
         }
     });
-    mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
-    mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
+
 
     World.add(engine.world, [
         floor,
@@ -134,7 +140,7 @@ const renderCanvas = () => {
         Bodies.rectangle(canvasSize.width + 10, canvasSize.height / 2, 20, canvasSize.height, wallOptions),
     ];
     World.add(engine.world, walls);
-    
+
     // Ограничение перемещения слов
     Matter.Events.on(engine, "beforeUpdate", function () {
         wordBodies.forEach((element) => {
@@ -168,3 +174,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
     splitWords();
     renderCanvas();
 });
+
+

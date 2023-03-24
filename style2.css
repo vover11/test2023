@@ -203,6 +203,7 @@
     display: flex;
     gap: 10px;
     margin-top: 10px;
+
 }
 
 @media screen and (max-width: 946px) {
@@ -218,6 +219,7 @@
     height: 700px;
     background-color: #3300FF;
     border-radius: 50px 50px 50px 50px;
+
 }
 
 @media screen and (max-width: 1285px) {
@@ -241,11 +243,12 @@
     height: 50px !important;
 } */
 
-.text{
+.text {
     max-width: 100% !important;
     height: 100% !important;
     background-color: transparent;
-   
+
+
 }
 
 .word {
@@ -258,7 +261,20 @@
 }
 
 .word.highlighted {
-    
+
     font-weight: bold;
     color: black;
+}
+
+.container3d {
+    background-color: #fd020200;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 30px;
+
+}
+
+.canvasfirst {
+    border-radius: 30px;
+    background-color: #070707;
 }
