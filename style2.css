@@ -288,4 +288,6 @@
 .canvasfirst {
     border-radius: 30px;
     background-color: #070707;
+    max-width: 100%;
+    
 }

@@ -1,6 +1,23 @@
+wordBodies = [];
 
+const passiveSupported = () => {
+    let passiveSupported = false;
+
+    try {
+        const options = Object.defineProperty({}, 'passive', {
+            get: function() {
+                passiveSupported = true;
+            }
+        });
+
+        window.addEventListener('test', null, options);
+    } catch(err) {}
+
+    return passiveSupported ? { passive: true } : false;
+};
 
 const splitWords = () => {
+    
     const textNode = document.querySelector(".text");
     const text = textNode.textContent;
     const newDomElements = text.split(" ").map((text) => {
@@ -12,9 +29,32 @@ const splitWords = () => {
             }">${text}</span>`;
     });
     textNode.innerHTML = newDomElements.join("");
+
+    // получить новые размеры и положения элементов DOM
+    const wordElements = document.querySelectorAll(".word");
+    const wordRects = [...wordElements].map((elemRef) => {
+        const { left, top, width, height } = elemRef.getBoundingClientRect();
+        return { left, top, width, height };
+    });
+
+    // обновить соответствующие им тела Matter.js
+    wordBodies.forEach((element, index) => {
+        const { left, top, width, height } = wordRects[index];
+        const boundX = width / 2;
+        const boundY = height / 2;
+        Matter.Body.setPosition(element.body, { x: left + boundX, y: top + boundY });
+        Matter.Body.setVertices(element.body, [
+            { x: -boundX, y: -boundY },
+            { x: boundX, y: -boundY },
+            { x: boundX, y: boundY },
+            { x: -boundX, y: boundY }
+        ]);
+    });
 };
 
+
 const renderCanvas = () => {
+    let wordBodies = [];
 
     const Engine = Matter.Engine;
     const Render = Matter.Render;
@@ -45,6 +85,50 @@ const renderCanvas = () => {
         }
     });
 
+
+
+
+    const resizeCanvas = () => {
+        const textContainer = document.querySelector('.text');
+        const { width, height } = textContainer.getBoundingClientRect();
+        const canvas = document.querySelector('canvas');
+        canvas.width = Math.ceil(width * window.devicePixelRatio);
+        canvas.height = Math.ceil(height * window.devicePixelRatio);
+    
+        Render.setPixelRatio(render, window.devicePixelRatio);
+        Render.run(render);
+    
+        updateWordBodies();
+    };
+
+    const updateWordBodies = () => {
+        // Получить новые размеры и положения элементов DOM
+        const wordElements = document.querySelectorAll(".word");
+        const wordRects = [...wordElements].map((elemRef) => {
+            const { left, top, width, height } = elemRef.getBoundingClientRect();
+            return { left, top, width, height };
+            
+        });
+        
+        // Обновить соответствующие им тела Matter.js
+        wordBodies.forEach((element, index) => {
+            const { left, top, width, height } = wordRects[index];
+            const boundX = width / 2;
+            const boundY = height / 2;
+            Matter.Body.setPosition(element.body, { x: left + boundX, y: top + boundY });
+            Matter.Body.setVertices(element.body, [
+                { x: -boundX, y: -boundY },
+                { x: boundX, y: -boundY },
+                { x: boundX, y: boundY },
+                { x: -boundX, y: boundY }
+            ]);
+        });
+    };
+
+    window.addEventListener('resize', resizeCanvas);
+    const observer = new ResizeObserver(resizeCanvas);
+    observer.observe(textContainer);
+
     const floor = Bodies.rectangle(
         canvasSize.width / 2,
         canvasSize.height,
@@ -74,7 +158,7 @@ const renderCanvas = () => {
         params
     );
     const wordElements = document.querySelectorAll(".word");
-    const wordBodies = [...wordElements].map((elemRef) => {
+    wordBodies = [...wordElements].map((elemRef) => {
         const width = elemRef.offsetWidth;
         const height = elemRef.offsetHeight;
 
@@ -87,7 +171,7 @@ const renderCanvas = () => {
             elem: elemRef,
             render() {
                 const { x, y } = this.body.position;
-                this.elem.style.top = `${y + height / 2 - 10}px`;
+                this.elem.style.top = `${y + height / 2 - 20}px`;
                 this.elem.style.left = `${x - width / 2}px`;
                 this.elem.style.transform = `rotate(${this.body.angle}rad)`;
             }
@@ -96,12 +180,15 @@ const renderCanvas = () => {
 
 
     const mouse = Matter.Mouse.create(document.body, {
-        // Добавьте следующий объект параметров:
+
         eventOptions: {
-            // Сделайте `passive` равным `false`
+
             passive: true
         }
+
+        
     });
+
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
         mouse,
         constraint: {
@@ -111,8 +198,6 @@ const renderCanvas = () => {
             }
         }
     });
-
-
 
     World.add(engine.world, [
         floor,
@@ -141,7 +226,7 @@ const renderCanvas = () => {
     ];
     World.add(engine.world, walls);
 
-    // Ограничение перемещения слов
+
     Matter.Events.on(engine, "beforeUpdate", function () {
         wordBodies.forEach((element) => {
             const { x, y } = element.body.position;
@@ -169,6 +254,20 @@ const renderCanvas = () => {
         requestAnimationFrame(rerender);
     })();
 };
+window.addEventListener("resize", () => {
+    const textContainer = document.querySelector('.text');
+    const { width, height } = textContainer.getBoundingClientRect();
+    const canvasSize = {
+        width: Math.ceil(width),
+        height: Math.ceil(height)
+    };
+    render.options.width = canvasSize.width;
+    render.options.height = canvasSize.height;
+    Matter.Render.stop(render);
+    Matter.Render.run(render);
+});
+
+
 
 window.addEventListener("DOMContentLoaded", (event) => {
     splitWords();
