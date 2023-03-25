@@ -13,6 +13,12 @@
     src: url(fonts/RabbitHole-DisplayTRIAL-VERSION-1.ttf);
 }
 
+@font-face {
+    font-family: Slack;
+    src: url(fonts/Slack-Light.ttf);
+    
+}  
+
 * {
     padding: 0px;
     margin: 0px;
@@ -206,14 +212,14 @@
 
 }
 
-.item1{
+/* .item1{
     order: 2;
 
 }
 
 .item2{
     order: 1;
-}
+} */
 
 
 
@@ -258,6 +264,7 @@
     max-width: 100% !important;
     height: 100% !important;
     background-color: transparent;
+    pointer-events: none;
 
 
 }
@@ -268,6 +275,7 @@
     cursor: grab;
     font-size: 30px;
     color: #ffeb3b;
+    pointer-events: none;
 
 }
 
@@ -275,6 +283,7 @@
 
     font-weight: bold;
     color: black;
+    pointer-events: none;
 }
 
 .container3d {
@@ -289,5 +298,7 @@
     border-radius: 30px;
     background-color: #070707;
     max-width: 100%;
+    /* width: 100% !important;
+    height: 100% !important; */
     
 }
