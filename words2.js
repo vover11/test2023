@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const text = textNode.textContent;
         const newDomElements = text.split(" ").map((text) => {
             const highlighted =
-                text.startsWith(`"30under30"`) ||
-                text.startsWith(`CTO`) ||
-                text.startsWith(`Mythrill`);
+                text.startsWith(`DEVELOPMENT`) ||
+                text.startsWith(`WEBSITE`) ||
+                text.startsWith(`COMPANY`);
             return `<span class="word ${highlighted ? "highlighted" : null}" style="background-color: transparent">${text}</span>`;
 
         });
