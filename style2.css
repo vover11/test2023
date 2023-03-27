@@ -19,6 +19,14 @@
     
 }  
 
+@font-face {
+    font-family: PT Astra Sens;
+    src: url(fonts/pt-astra-sans_bold.ttf);
+    font-style: normal;
+    font-weight: 100;
+    
+}  
+
 * {
     padding: 0px;
     margin: 0px;
@@ -219,16 +227,6 @@
 
 }
 
-/* .item1{
-    order: 2;
-
-}
-
-.item2{
-    order: 1;
-} */
-
-
 
 @media screen and (max-width: 946px) {
     .container {
@@ -236,11 +234,25 @@
     }
 }
 
+.pre_content{
+    max-width: 100%;
+    height: 360px;
+    background-color: black;
+    margin-top: 10px;
+    padding-left: 56px;
+    padding-right: 56px;
+    padding-top: 56px;
+    border-radius: 30px;
+    font-family: PT Astra Sens;
+    color: #f2f2f2;
+    font-size: 50px;
+}
+
 
 .start__content {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 500px;
     background-color: #3300FF;
     border-radius: 50px 50px 50px 50px;
 
@@ -272,6 +284,7 @@
     height: 100% !important;
     background-color: transparent;
     pointer-events: none;
+    
 }
 
 
@@ -294,10 +307,12 @@
 }
 
 .container3d {
-    background-color: #fd020200;
+    background-color: #ff0000;
     width: 100% !important;
     height: 100% !important;
     border-radius: 30px;
+    position: absolute;
+    z-index: 2;
 
 }
 
@@ -312,7 +327,7 @@ canvas {
 
 .canvasfirst {
     border-radius: 30px;
-    background-color: #070707 !important;
+    /* background-color: #070707 !important; */
     max-width: 100%;
     /* width: 100% !important;
     height: 100% !important; */

@@ -33,7 +33,8 @@ function main() {
     const near = 0.1;
     const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 5, 5);
+    camera.position.set(2,5,0.5);
+    camera.lookAt(0, 0, 0); // направление камеры на объект
 
 
     const controls = new OrbitControls(camera, canvas);
@@ -41,7 +42,7 @@ function main() {
     controls.update();
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#070707");
+    scene.background = new THREE.Color("#B798CD");
 
     // {
     //     const planeSize = 40;
@@ -66,42 +67,28 @@ function main() {
     //     scene.add(mesh);
     // }
     // {
-    //     const cubeSize = 4;
-    //     const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-    //     const cubeMat = new THREE.MeshPhongMaterial({ color: "#8AC" });
-    //     const mesh = new THREE.Mesh(cubeGeo, cubeMat);
-    //     mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
-    //     scene.add(mesh);
-    // }
-    // {
-    //     const sphereRadius = 3;
-    //     const sphereWidthDivisions = 32;
-    //     const sphereHeightDivisions = 16;
-    //     const sphereGeo = new THREE.SphereGeometry(
-    //         sphereRadius,
-    //         sphereWidthDivisions,
-    //         sphereHeightDivisions
-    //     );
-    //     const sphereMat = new THREE.MeshPhongMaterial({ color: "#CA8" });
-    //     const mesh = new THREE.Mesh(sphereGeo, sphereMat);
-    //     mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
-    //     scene.add(mesh);
-    // }
 
     const loader = new GLTFLoader();
-    loader.load('models/model3/scene.gltf', function (gltf) {
+    loader.load('models/model4/scene.gltf', function (gltf) {
         const model = gltf.scene;
         model.position.y = 5; // поднимаем модель на 5 единиц по оси Y
+    
+        // Найти материал модели, который вы хотите сделать светящимся
+        model.traverse(function(node) {
+            if (node.isMesh) {
+                node.material.emissive = new THREE.Color(0x000000); // устанавливаем красный цвет эмиссии
+            }
+        });
+    
         scene.add(model);
     });
 
 
-
     {
         const color = 0xffffff;
-        const intensity = 1;
+        const intensity = 5;
         const light = new THREE.DirectionalLight(color, intensity);
-        light.position.set(0, 10, 0);
+        light.position.set(0, 200, 0);
         light.target.position.set(-5, 0, 0);
         scene.add(light);
         scene.add(light.target);
