@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 text.startsWith(`"30under30"`) ||
                 text.startsWith(`CTO`) ||
                 text.startsWith(`Mythrill`);
-            return `<span class="word ${highlighted ? "highlighted" : null}">${text}</span>`;
+            return `<span class="word ${highlighted ? "highlighted" : null}" style="background-color: transparent">${text}</span>`;
+
         });
         textNode.innerHTML = newDomElements.join("");
     };
@@ -41,9 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
         wordSpan.style.top = y - h / 2 + "px";
         container.appendChild(wordSpan);
         // Связываем тело Matter.js с соответствующим элементом DOM
+        body.render.fillStyle = 'transparent';
         body.label = wordSpan;
         return body;
     });
+
+    
 
 
 
@@ -57,9 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
         options: {
             width: width,
             height: height,
-            wireframes: true,
+            wireframes: false,
             background:
-                "transparent",
+                "blue",
         },
     });
 
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const wordSpan = body.label;
             const pos = body.position;
             const angle = body.angle;
-    
+
             // Проверяем, не выходит ли слово за границы канваса
             const wordWidth = wordSpan.clientWidth;
             const wordHeight = wordSpan.clientHeight;
@@ -89,27 +93,27 @@ document.addEventListener("DOMContentLoaded", function () {
             const maxY = canvasHeight - wordHeight / 2;
             const minX = wordWidth / 2;
             const minY = wordHeight / 2;
-    
+
             let x = pos.x;
             let y = pos.y;
-    
+
             if (x > maxX) {
                 x = maxX;
             } else if (x < minX) {
                 x = minX;
             }
-    
+
             if (y > maxY) {
                 y = maxY;
             } else if (y < minY) {
                 y = minY;
             }
-    
+
             wordSpan.style.left = x - wordWidth / 2 + "px";
             wordSpan.style.top = y - wordHeight / 2 + "px";
             wordSpan.style.transform = `rotate(${angle}rad)`;
         });
-    
+
         requestAnimationFrame(updateWordPositions);
     };
     updateWordPositions();
