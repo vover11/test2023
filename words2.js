@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+
     // Разделяем слова на теги span
     const splitWords = () => {
         const textNode = document.querySelector(".text");
@@ -18,21 +18,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // Создаем движок Matter.js и его модули
     const { Engine, Render, World, Bodies } = Matter;
 
+
+    
     // Создаем размеры холста
     const container = document.querySelector(".text");
     let width = container.offsetWidth;
     let height = container.offsetHeight;
+    
 
-    const canvas = document.querySelector('canvas');
+    const canvas = document.createElement('canvas');
+    // canvas = document.querySelector('canvas');
     canvas.width = width;
     canvas.height = height;
+    
+
+
 
     // Создаем тела и связываем их с элементами DOM
     const wordSpans = container.querySelectorAll('.word');
     const bodies = Array.from(wordSpans).map((wordSpan) => {
         const bounds = wordSpan.getBoundingClientRect();
         const x = bounds.left + bounds.width / 2;
-        const y = bounds.top + bounds.height / 2;
+        // const x = container.clientWidth / 2;  //ставим слова по центру 
+        const y = -bounds.height / 2; // Изменяем начальную координату по оси y
         const w = bounds.width;
         const h = bounds.height;
         const body = Bodies.rectangle(x, y, w, h);
@@ -47,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return body;
     });
 
-    
+
 
 
 
@@ -72,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         height = container.offsetHeight;
         canvas.width = width;
         canvas.height = height;
-        render.setPixelRatio(window.devicePixelRatio);
+        render.options.pixelRatio = window.devicePixelRatio;
         canvas.style.width = width + 'px';
         canvas.style.height = height + 'px';
         Engine.update(engine, 0);
@@ -134,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Render.run(render);
 
     World.add(engine.world, bodies);
-});
+
 
 
 

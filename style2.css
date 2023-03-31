@@ -16,16 +16,16 @@
 @font-face {
     font-family: Slack;
     src: url(fonts/Slack-Light.ttf);
-    
-}  
+
+}
 
 @font-face {
     font-family: PT Astra Sens;
     src: url(fonts/pt-astra-sans_bold.ttf);
     font-style: normal;
     font-weight: 100;
-    
-}  
+
+}
 
 * {
     padding: 0px;
@@ -35,12 +35,12 @@
 
 .main {
     background-color: rgb(255, 255, 255);
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 @media screen and (max-width: 600px) {
-    .main  {
+    .main {
         padding-left: 6px;
         padding-right: 6px;
     }
@@ -222,8 +222,8 @@
     max-width: 100%;
     height: 100%;
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 6px;
+    margin-top: 6px;
 
 }
 
@@ -234,25 +234,79 @@
     }
 }
 
-.pre_content{
+.pre_content_container {
+    max-width: 100%;
+    height: auto;
+}
+
+.pre_content {
     max-width: 100%;
     height: 360px;
-    background-color: black;
-    margin-top: 10px;
+    background-color: #001DFC;
+    margin-top: 6px;
     padding-left: 56px;
     padding-right: 56px;
-    padding-top: 56px;
     border-radius: 30px;
     font-family: PT Astra Sens;
     color: #f2f2f2;
-    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+
+@media screen and (max-width: 946px) {
+    .pre_content {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        flex-direction: column;
+        height: auto;
+        gap: 50px;
+    }
+}
+
+.pre_conten_title {
+    display: flex;
+    flex-direction: column;
+    font-size: 180px;
+    line-height: 60%;
+}
+
+
+@media screen and (max-width: 946px) {
+    .pre_conten_title{
+        font-size: 100px;
+        line-height: 100%;
+
+    }
+}
+
+.pre_content_span {
+    font-size: 99px;
+    color: transparent;
+   
+    -webkit-text-stroke: 1px #00FF85;
+    /* для поддержки в браузерах на основе WebKit, таких как Safari и Chrome */
+
+}
+
+.pre_conten_image{
+    padding-top: 7px;
+}
+
+
+.containernew {
+    width: 400px;
+    height: 300px;
+    border: solid 2px;
+    border-radius: 30px;
+    border-color: #060606;
+}
 
 .start__content {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 450px;
     background-color: #3300FF;
     border-radius: 50px 50px 50px 50px;
 
@@ -260,7 +314,7 @@
 
 @media screen and (max-width: 1285px) {
     .start__content {
-        height: 600px;
+        /* height: 600px; */
 
 
     }
@@ -268,7 +322,7 @@
 
 @media screen and (max-width: 946px) {
     .start__content {
-        height: 600px;
+        /* height: 600px; */
 
 
     }
@@ -284,7 +338,7 @@
     height: 100% !important;
     background-color: transparent;
     pointer-events: none;
-    
+
 }
 
 
@@ -293,7 +347,7 @@
     font-family: Catalogue;
     position: absolute;
     cursor: grab;
-    font-size: 30px;
+    font-size: 20px;
     color: #ffffff;
     pointer-events: none;
 
@@ -309,15 +363,14 @@
 .container3d {
     background-color: #ff0000;
     width: 100% !important;
-    height: 100% !important;
+    height: 300px !important;
     border-radius: 30px;
-    position: absolute;
     z-index: 2;
 
 }
 
 canvas {
-    
+
     top: 0;
     left: 0;
     width: 100%;
@@ -329,7 +382,8 @@ canvas {
     border-radius: 30px;
     /* background-color: #070707 !important; */
     max-width: 100%;
+    height: 300px !important;
     /* width: 100% !important;
     height: 100% !important; */
-    
+
 }
