@@ -326,6 +326,12 @@
 
 }
 
+#right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (max-width: 1285px) {
     .start__content {
         /* height: 600px; */
@@ -339,6 +345,17 @@
         /* height: 600px; */
 
 
+    }
+}
+
+.start__conten__image {
+    width: auto;
+    
+}
+
+@media screen and (max-width: 946px) {
+    .start__conten__image {
+        width: 70%;
     }
 }
 
