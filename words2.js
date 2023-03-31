@@ -38,9 +38,9 @@
     const wordSpans = container.querySelectorAll('.word');
     const bodies = Array.from(wordSpans).map((wordSpan) => {
         const bounds = wordSpan.getBoundingClientRect();
-        const x = bounds.left + bounds.width / 2;
+        const x = bounds.left + bounds.width / 2 + 150;
         // const x = container.clientWidth / 2;  //ставим слова по центру 
-        const y = -bounds.height / 2; // Изменяем начальную координату по оси y
+        const y = -bounds.height / 2 + 5; // Изменяем начальную координату по оси y
         const w = bounds.width;
         const h = bounds.height;
         const body = Bodies.rectangle(x, y, w, h);
