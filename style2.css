@@ -275,8 +275,8 @@
 
 @media screen and (max-width: 946px) {
     .pre_conten_title{
-        font-size: 89px;
-        line-height: 100%;
+        font-size: 77px;
+        line-height: 80%;
 
     }
 }
@@ -284,10 +284,14 @@
 .pre_content_span {
     font-size: 99px;
     color: transparent;
-   
     -webkit-text-stroke: 1px #00FF85;
     /* для поддержки в браузерах на основе WebKit, таких как Safari и Chrome */
+}
 
+@media screen and (max-width: 946px) {
+    .pre_content_span {
+        font-size: 57px;
+    }
 }
 
 .pre_conten_image{
@@ -307,7 +311,7 @@
     .containernew {
         /* padding-left: 10px;
         padding-right: 10px; */
-        width: auto;
+        
         max-width: 100%;
     
     }
