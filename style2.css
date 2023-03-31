@@ -275,7 +275,7 @@
 
 @media screen and (max-width: 946px) {
     .pre_conten_title{
-        font-size: 100px;
+        font-size: 89px;
         line-height: 100%;
 
     }
@@ -301,6 +301,16 @@
     border: solid 2px;
     border-radius: 30px;
     border-color: #060606;
+}
+
+@media screen and (max-width: 600px) {
+    .containernew {
+        /* padding-left: 10px;
+        padding-right: 10px; */
+        width: auto;
+        max-width: 100%;
+    
+    }
 }
 
 .start__content {
