@@ -105,33 +105,37 @@
     </section>
 
 
+    <section class="slider__section">
+        <div class="slider__container">
+            <div class="slider">
+                <div class="card-card">
+                    <div class="card">
+                        <div class="card-front"></div>
+                        <div class="card-back"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-front"></div>
+                        <div class="card-back"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-front"></div>
+                        <div class="card-back"></div>
+                    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <script>
+                        const card = document.querySelectorAll('.card');
+                        for (let i = 0; i < card.length; i++) {
+                            card[i].addEventListener('click', function () {
+                                card[i].classList.toggle('flipped');
+                            });
+                        }
+                    </script>
+                </div>
+                <div class="card-card"></div>
+                <div class="card-card"></div>
+            </div>
+        </div>
+    </section>
 
 
 
