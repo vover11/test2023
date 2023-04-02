@@ -638,11 +638,13 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* white-space: normal; */
 }
 
 
 .card__back__text {
-
+    width: 100%;
+    height: 100%;
     font-family: PT Astra Sens;
     font-size: 25px;
     color: antiquewhite;
@@ -650,5 +652,6 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: normal;
 
 }
