@@ -634,13 +634,21 @@ canvas {
     height: 100%;
     background-color: #ff008c;
     border-radius: 0px 100px 0px 0px;
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 15px;
-    text-transform: lowercase;
-    text-align: center;
-    position: relative;
+}
+
+
+.card__back__text {
+
+    font-family: PT Astra Sens;
+    font-size: 25px;
+    color: antiquewhite;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
