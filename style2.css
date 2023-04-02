@@ -453,7 +453,7 @@ canvas {
     text-align: center;
     margin-right: 10px;
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-between;
     gap: 20px;
     align-items: center;
 }
@@ -471,7 +471,7 @@ canvas {
 } */
 
 .cardall {
-    width: 100%;
+    width: auto;
     height: 100%;
     display: flex;
     gap: 3px;
@@ -615,7 +615,7 @@ canvas {
 .card__frond__span{
     width: 100%;
     position: relative;
-    top: 50px;
+    top: 100px;
     right: 100px;
     
 }
