@@ -298,6 +298,12 @@
     padding-top: 7px;
 }
 
+@media screen and (max-width: 600px) {
+    .pre_conten_image {
+
+
+    }
+}
 
 .containernew {
     width: 400px;
