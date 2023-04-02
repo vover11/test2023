@@ -558,7 +558,7 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    /* position: relative; */
 }
 
 .card-back {
@@ -574,4 +574,5 @@ canvas {
     font-size: 15px;
     text-transform: lowercase;
     text-align: center;
+    position: relative;
 }
