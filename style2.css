@@ -427,7 +427,7 @@ canvas {
 
 
 .slider__section {
-    margin-top: 50px;
+    margin-top: 160px;
 }
 
 .slider__container {
@@ -455,13 +455,14 @@ canvas {
     display: flex;
     /* justify-content: center; */
     gap: 20px;
+    align-items: center;
 }
 
-@media screen and (min-width: 946px) {
+/* @media screen and (min-width: 946px) {
     .card-card {
         justify-content: center;
     }
-}
+} */
 
 /* @media screen and (max-width: 946px) {
     .card-card  {
@@ -603,9 +604,29 @@ canvas {
     background-color: #3300FF;
     border-radius: 0px 100px 0px 0px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    
     /* position: relative; */
+}
+
+
+.card__frond__span{
+    width: 100%;
+    position: relative;
+    top: 50px;
+    right: 100px;
+    
+}
+
+.card__front__price{
+    border: solid 2px black;
+    border-radius: 100px;
+    font-family: Slack;
+    font-size: 30px;
+    color: antiquewhite;
+    background-color: black;
 }
 
 .card-back {
