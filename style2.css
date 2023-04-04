@@ -396,6 +396,10 @@
     padding: 20px;
 }
 
+.play {
+    padding: 20px;
+}
+
 .word {
     font-family: Catalogue;
     position: absolute;

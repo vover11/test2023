@@ -14,15 +14,31 @@ const splitWords = () => {
 };
 splitWords();
 
-// Создаем движок Matter.js и его модули
-const { Engine, Render, World, Bodies } = Matter;
-
-
-
 // Создаем размеры холста
 const container = document.querySelector(".text");
 let width = container.offsetWidth;
 let height = container.offsetHeight;
+
+// Создаем движок Matter.js и его модули
+const { Engine, Render, World, Bodies } = Matter;
+
+// Создаем движок
+const engine = Engine.create({
+    gravity: { x: 0, y: 0.5 },
+});
+// Создаем отрисовщик
+const render = Render.create({
+    element: container,
+    engine: engine,
+    options: {
+        width: width,
+        height: height,
+        wireframes: false,
+        background:
+            "blue",
+    },
+});
+
 
 
 const canvas = document.createElement('canvas');
@@ -47,15 +63,15 @@ const bodies = Array.from(wordSpans).map((wordSpan) => {
             fillStyle: 'transparent',
             strokeStyle: '#00FF85',
             lineWidth: 2,
-            lineJoin: 'round',
+            // lineJoin: 'round',
         },
         chamfer: { radius: 19 },
     });
 
     // Связываем тело Matter.js с соответствующим элементом DOM
     wordSpan.style.position = "absolute";
-    wordSpan.style.left = x - w / 2 + "px";
-    wordSpan.style.top = y - h / 2 + "px";
+    wordSpan.style.left = x - w / 2;
+    wordSpan.style.top = y - h / 2;
     container.appendChild(wordSpan);
     // Связываем тело Matter.js с соответствующим элементом DOM
     body.render.fillStyle = 'transparent';
@@ -92,23 +108,6 @@ const bodies = Array.from(wordSpans).map((wordSpan) => {
 
 
 
-
-// Создаем движок
-const engine = Engine.create();
-
-// Создаем отрисовщик
-const render = Render.create({
-    element: container,
-    engine: engine,
-    options: {
-        width: width,
-        height: height,
-        wireframes: false,
-        background:
-            "blue",
-    },
-});
-
 window.addEventListener("resize", function () {
     width = container.offsetWidth;
     height = container.offsetHeight;
@@ -118,6 +117,19 @@ window.addEventListener("resize", function () {
     canvas.style.width = width + 'px';
     canvas.style.height = height + 'px';
     Engine.update(engine, 0);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // получаем элементы кнопок с классом "play"
+    var buttons = document.querySelectorAll(".play");
+
+    // добавляем обработчик событий клика на каждую кнопку
+    buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            // код для перезапуска скрипта
+            location.reload();
+        });
+    });
 });
 
 const updateWordPositions = () => {
